@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>ERROR </title>
+</head>
+<body>
+	<h1>ERROR</h1>
+	<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    <tr th:each="list : ${list}">
+        <td class="align-middle" th:text="${list.id}"></td>
+        <td class="align-middle" th:text="${list.name}"></td>
+        <td ><img th:src="@{${list.image}}"/></td>
+    </tr>
+</table>
+</body>
+</html>

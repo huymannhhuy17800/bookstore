@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_header">
+</head>
+<body>
+<div th:replace="fragments :: html_menu"></div>
+
+	<section class="details-box">
+	<div class="image">
+	<img alt="" src="https://vn-test-11.slatic.net/p/9deee87bf4c9b142450a3abdf026c497.jpg">
+	</div>
+	<div class="details-info">
+        <h1>Featured book</h1>
+        by<h2>manh huy nguyen</h2>
+        <p>On a dreary, stuck-inside kind of day, a brother and sister heed their grandmother’s advice: “Use those beautiful and brilliant minds of yours. Lift your arms, close your eyes, take a deep breath, and believe in a thing. Somebody somewhere at some point was just as bored you are now.” And before they know it, their imaginations lift them up and out of their boredom. Then, on a day full of quarrels, it’s time for a trip outside their minds again, and they are able to leave their anger behind. This precious skill, their grandmother tells them, harkens back to the days long before they were born, when their ancestors showed the world the strength and resilience of their beautiful and brilliant minds. Jacqueline Woodson’s lyrical text and Rafael Lopez’s dazzling art celebrate the extraordinary ability to lift ourselves up and imagine a better world.</p>
+        <p class="price">250.000</p>
+        <form class="quantity-check">
+            <input type="number" id="quantity" placeholder="1" name="quantity" min="1" max="5">
+            <button class="btn">Add to cart</button>
+        </form>    
+
+    </div>
+
+		
+	</section>
+
+<div th:replace="fragments :: html_footer"></div>
+</body>
+</html>
