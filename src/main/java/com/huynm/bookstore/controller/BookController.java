@@ -24,7 +24,7 @@ public class BookController {
 	private BookRepository bookRepository;
 	
 	@GetMapping("/")
-	public ModelAndView getBooks(Model model) {
+	public ModelAndView getAllBooks(Model model) {
 		List<Book> list = bookRepository.findAll();
 		ModelAndView m = new ModelAndView();
 		m.setViewName("home.html");
