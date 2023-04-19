@@ -6,61 +6,60 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.huynm.bookstore.model.Book;
+import com.huynm.bookstore.dto.BookDTO;
+import com.huynm.bookstore.entities.Book;
+import com.huynm.bookstore.entities.User;
 import com.huynm.bookstore.repository.BookRepository;
+import com.huynm.bookstore.service.IBookService;
 
 
-@Controller
-//@RequestMapping("/book")
+
+@RestController
+@RequestMapping("/v1/api/book")
 public class BookController {
 
 	@Autowired
-	private BookRepository bookRepository;
+	private IBookService iBookService;
 	
 	@GetMapping("/")
-	public ModelAndView getAllBooks(Model model) {
-		List<Book> list = bookRepository.findAll();
-		ModelAndView m = new ModelAndView();
-		m.setViewName("home.html");
-		model.addAttribute("list",list);
-		return m;
+	public ResponseEntity<List<Book>> getAallUser(){
+		List<Book> result = (List<Book>) iBookService.getAllBook();
+		return ResponseEntity.ok()
+				.header("X-Total-Count", String.valueOf(result.size()))
+				.body(result);
 	}
 	
-	@GetMapping("/details")
-	public ModelAndView getDetails(Model model) {
+	
+	@PostMapping("/add")
+	public ResponseEntity<Book> addBook(@RequestBody BookDTO dto){
+		Book book = dto.convertToEntity();
+		Book result = (Book) iBookService.addBook(book);
+		return ResponseEntity.ok()
+				.body(result);
 		
-		ModelAndView m = new ModelAndView();
-		m.setViewName("details.html");
-		return m;
 	}
 	
-	@GetMapping("/home")
-	public ModelAndView backHome() {
-		ModelAndView m = new ModelAndView();
-		m.setViewName("home.html");
-		return m;
-	}
-	@GetMapping("/display")
-	public ModelAndView display(Model model) {
-		List<Book> list = bookRepository.findAll();
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Book> updateBook(@PathVariable(value = "id") int id,@RequestBody BookDTO dto){
+		Book result = iBookService.updateBook(id, dto);
+		return ResponseEntity.ok()
+				.body(result);
 		
-		ModelAndView m = new ModelAndView();
-		m.setViewName("all_book_display.html");
-		model.addAttribute("alllist",list);
-		return m;
 	}
 	
-	@GetMapping("/cart")
-	public ModelAndView getCart(Model model) {
-		
-		ModelAndView m = new ModelAndView();
-		m.setViewName("cart.html");
-		return m;
+	@DeleteMapping("/delete/{id}")
+	public void deleteBook(@PathVariable(value = "id") int id){
+		iBookService.deleteBook(id);
 	}
 }

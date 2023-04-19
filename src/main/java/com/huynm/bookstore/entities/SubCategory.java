@@ -1,6 +1,4 @@
-package com.huynm.bookstore.model;
-
-import java.io.Serializable;
+package com.huynm.bookstore.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,24 +8,17 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tblCategory")
-public class Category implements Serializable{
+@Table(name = "tblSubCategory")
+public class SubCategory {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	
-	public Category() {
-		// TODO Auto-generated constructor stub
-	}
+//	private Category category;
 
-	public Category(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
 
 	public int getId() {
 		return id;
@@ -44,7 +35,14 @@ public class Category implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+//	public Category getCategory() {
+//		return category;
+//	}
+
+//	public void setCategory(Category category) {
+//		this.category = category;
+//	}
 	
 	
 }

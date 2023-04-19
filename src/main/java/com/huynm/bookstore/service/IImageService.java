@@ -1,7 +1,10 @@
 package com.huynm.bookstore.service;
 
-import com.huynm.bookstore.model.Image;
+import org.springframework.stereotype.Service;
 
+import com.huynm.bookstore.entities.Image;
+
+@Service
 public interface IImageService {
 
 	void updateImage(Image img);

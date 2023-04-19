@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.huynm.bookstore.model.Role;
+import com.huynm.bookstore.entities.Role;
 
 
 @Repository

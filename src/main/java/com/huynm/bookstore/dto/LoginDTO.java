@@ -1,41 +1,28 @@
 package com.huynm.bookstore.dto;
 
-public class LoginDTO {
+import java.io.Serializable;
+
+import com.huynm.bookstore.entities.User;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginDTO implements Serializable{
 
 	private String username;
 	
 	private String password;
 	
-	private boolean renemberMe;
-
-	public String getUsername() {
-		return username;
+	public User convertToEntity() {
+		User user = new User();
+		user.setUsername(this.username);
+		user.setPassword(this.password);
+		return user;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isRenemberMe() {
-		return renemberMe;
-	}
-
-	public void setRenemberMe(boolean renemberMe) {
-		this.renemberMe = renemberMe;
-	}
-
-	@Override
-	public String toString() {
-		return "LoginDTO [username=" + username + ", password=" + password + ", renemberMe=" + renemberMe + "]";
-	}
-	
 	
 }
