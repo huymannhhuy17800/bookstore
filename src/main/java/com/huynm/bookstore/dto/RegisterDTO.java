@@ -1,5 +1,6 @@
 package com.huynm.bookstore.dto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,8 +29,7 @@ public class RegisterDTO {
 	
 	private String lastName;
 	
-	private Set<Role> roles = new HashSet<>();
-	
+	private List<Role> roles = new ArrayList<>();
 	
 	public User convertToEntity() {
 		User user = new User();
@@ -39,6 +39,7 @@ public class RegisterDTO {
 		user.setPhone(phone);
 		user.setFirstname(firstName);
 		user.setLastname(lastName);
+		user.setRoles(roles);
 		return user;
 	}	
 }

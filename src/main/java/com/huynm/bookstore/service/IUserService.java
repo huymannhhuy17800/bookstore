@@ -15,4 +15,8 @@ public interface IUserService {
 	User registerUser(User user);
 	
 	User findByUsername(String username);
+	
+	User findUserById(int id);
+	
+	boolean isUserExisted(String username);
 }

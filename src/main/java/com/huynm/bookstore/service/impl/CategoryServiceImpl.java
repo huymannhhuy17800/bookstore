@@ -21,15 +21,8 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public Category updateCategory(int id, CategoryDTO dto) {
-		if(categoryRepository.findById(id).isPresent()) {
-			Category existingCategory = categoryRepository.findById(id).get();
-			existingCategory.setName(dto.getName());
-			Category updatedCategory = dto.convertToEntity();
-			updatedCategory = categoryRepository.save(existingCategory);
-			return updatedCategory;
-		}
-		return null;
+	public Category updateCategory(Category category) {
+		return categoryRepository.saveAndFlush(category);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO implements Serializable{
+public class LoginDTO{
 
 	private String username;
 	

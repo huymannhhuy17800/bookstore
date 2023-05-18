@@ -32,8 +32,8 @@ public class BookController {
 	@Autowired
 	private IBookService iBookService;
 	
-	@GetMapping("/")
-	public ResponseEntity<List<Book>> getAallUser(){
+	@GetMapping("")
+	public ResponseEntity<List<Book>> getAllBooks(){
 		List<Book> result = (List<Book>) iBookService.getAllBook();
 		return ResponseEntity.ok()
 				.header("X-Total-Count", String.valueOf(result.size()))
@@ -50,9 +50,10 @@ public class BookController {
 		
 	}
 	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<Book> updateBook(@PathVariable(value = "id") int id,@RequestBody BookDTO dto){
-		Book result = iBookService.updateBook(id, dto);
+	@PutMapping("/update")
+	public ResponseEntity<Book> updateBook(@RequestBody BookDTO dto){
+		Book result = dto.convertToEntity();
+		result = iBookService.updateBook(result);
 		return ResponseEntity.ok()
 				.body(result);
 		

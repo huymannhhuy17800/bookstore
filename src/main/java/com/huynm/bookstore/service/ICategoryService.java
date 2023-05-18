@@ -11,12 +11,12 @@ import com.huynm.bookstore.entities.Category;
 public interface ICategoryService {
 
 	// ham them 
-	public Category addCategory(Category category);
+	Category addCategory(Category category);
 	
-	public Category updateCategory(int id, CategoryDTO dto);
+	Category updateCategory(Category category);
 	
-	public void deleteCategory(int id);
+	void deleteCategory(int id);
 	
-	public List<Category> getAllCategory();
+	List<Category> getAllCategory();
 	
 }

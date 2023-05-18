@@ -12,17 +12,17 @@ import com.huynm.bookstore.entities.Category;
 @Service
 public interface IBookService {
 	
-		public Book addBook(Book book);
-			
-		public Book updateBook(int id, BookDTO dto);
+		Book addBook(Book book);
 		
-		public void deleteBook(int id);
+		Book updateBook(Book book);
 		
-		public List<Book> getAllBook();
+		void deleteBook(int id);
 		
-		public Book getBookById(int id);
+		List<Book> getAllBook();
 		
-		public Set<Book> searchBookByName(String name);
+		Book getBookById(int id);
 		
-		public Set<Book> searchBookByAuthor(String author);
+		Set<Book> searchBookByName(String name);
+		
+		Set<Book> searchBookByAuthor(String author);
 }

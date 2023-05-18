@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,9 +29,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	private final UserDetailsService userDetailsService;
 	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, 
-			HttpServletResponse response, 
-			FilterChain filterChain)
+	protected void doFilterInternal(
+			@NonNull HttpServletRequest request,
+			@NonNull HttpServletResponse response,
+			@NonNull	 FilterChain filterChain)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		final String authHeader = request.getHeader("Authorization");
@@ -54,9 +56,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 				// update authentication token
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 			}
-			
 		}
 		filterChain.doFilter(request, response);
 	}
+
 
 }

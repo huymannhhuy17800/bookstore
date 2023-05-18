@@ -14,13 +14,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -34,12 +36,19 @@ public class Role implements Serializable{
 	private String name;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "tblUser_Role", joinColumns = @JoinColumn(name = "roleID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"))
+	@JoinTable(name = "tblUser_Role", 
+	joinColumns = @JoinColumn(name = "roleID"), 
+	inverseJoinColumns = @JoinColumn(name = "userID"))
+	@JsonIgnore
 	private Set<User> users;
 
-	public Role(int id, String name) {
+	public Role(int id) {
 		super();
 		this.id = id;
+	}
+
+	public Role(String name){
+		super();
 		this.name = name;
 	}
 

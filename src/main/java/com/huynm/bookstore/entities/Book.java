@@ -20,13 +20,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Setter
-@Getter
+@Data
 @Entity
 @NoArgsConstructor
 @Table(name = "tblBook")
@@ -63,7 +63,7 @@ public class Book implements Serializable{
 	@Column(name = "quantity")
 	private int quantity;
 	
-	@OneToMany(mappedBy = "book")
+	@OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Image> images;
 	
@@ -73,14 +73,6 @@ public class Book implements Serializable{
 	inverseJoinColumns=@JoinColumn(name="OrderID"))
 	@JsonIgnore
 	private List<Order> orders;
-	
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", originalPrice=" + originalPrice + ", salePrice=" + salePrice
-				+ ", publishedDate=" + publishedDate + ", description=" + description + ", authors=" + authors
-				+ ", bFormat=" + Format + ", pages=" + pages + ", quantity=" + quantity + ", images=" + images + "]";
-	}
 	
 	
 }

@@ -12,12 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "tblImage")
@@ -38,12 +38,6 @@ public class Image implements Serializable{
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "book_id")
-	private Book book;
-
-	@Override
-	public String toString() {
-		return "Image [id=" + id + ", link=" + link + ", book=" + book + "]";
-	}
-	
+	private Book book;	
 	
 }

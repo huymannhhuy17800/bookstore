@@ -18,25 +18,8 @@ public class BookServiceImpl implements IBookService{
 	private BookRepository bookRepository;
 
 	@Override
-	public Book updateBook(int id, BookDTO dto) {
-	
-		        if (bookRepository.findById(id).isPresent()){
-		            Book existingBook = bookRepository.findById(id).get();
-			            existingBook.setName(dto.getName());
-			            existingBook.setAuthors(dto.getAuthors());
-			            existingBook.setFormat(dto.getFormat());
-			            existingBook.setOriginalPrice(dto.getOriginalPrice());
-			            existingBook.setSalePrice(dto.getSalePrice());
-			            existingBook.setPages(dto.getPages());
-			            existingBook.setPublishedDate(dto.getPublishedDate());
-			            existingBook.setQuantity(dto.getQuantity());
-			            existingBook.setDescription(dto.getDescription());
-			            Book updatedBook = dto.convertToEntity();
-			            updatedBook= bookRepository.save(existingBook);
-		            return updatedBook ;
-		        }else{
-		            return null;
-		        }		   
+	public Book updateBook(Book book) {		
+		return bookRepository.saveAndFlush(book);
 	}
 
 	@Override

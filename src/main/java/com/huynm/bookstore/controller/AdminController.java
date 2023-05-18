@@ -26,4 +26,11 @@ public class AdminController {
 				.header("X-Total-Count", String.valueOf(result.size()))
 				.body(result);
 	}
+	
+	
+//	public ResponseEntity<User> getUserById(int id){
+//		return ResponseEntity.ok()
+//				.header("X-Total-Count", String.valueOf(result.size()))
+//				.body(result);
+//	}
 }
