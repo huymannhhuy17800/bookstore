@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import com.huynm.bookstore.entities.Book;
 
+import com.huynm.bookstore.entities.SubCategory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,9 +34,9 @@ public class BookDTO {
 	
 	private int quantity;
 
-	private List<String> categories;
+	private List<SubCategory> categories;
 
-	private List<String> imgs;
+	private List<ImageDTO> imgs;
 
 	public Book convertToEntity() {
 		Book book = new Book();
@@ -49,6 +50,7 @@ public class BookDTO {
 		book.setPublishedDate(this.publishedDate);
 		book.setQuantity(this.quantity);
 		book.setPages(this.pages);
+		book.setCategories(this.categories);
 		return book;
 	}
 

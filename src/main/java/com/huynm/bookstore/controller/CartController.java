@@ -48,27 +48,18 @@ public class CartController {
 	@PutMapping("/remove/{bookID}")
 	public ResponseEntity<?> remove(@PathVariable("bookID") int bookID) {
 		Book book = bookService.getBookById(bookID);
-		if(book != null){
-			OrderDetail item = new OrderDetail();
-			item.setBook(book);
-			item.setPrice(book.getOriginalPrice());
-			item.setQuantity(1);
-			cartService.add(item);
+		if(book == null) {
+			throw new RuntimeException();
+		}else{
+			cartService.remove(bookID);
 		}
 		return ResponseEntity.ok().body(book);
 	}
 
-	@PutMapping("/clear/{bookID}")
-	public ResponseEntity<?> clear(@PathVariable("bookID") int bookID) {
-		Book book = bookService.getBookById(bookID);
-		if(book != null){
-			OrderDetail item = new OrderDetail();
-			item.setBook(book);
-			item.setPrice(book.getOriginalPrice());
-			item.setQuantity(1);
-			cartService.add(item);
-		}
-		return ResponseEntity.ok().body(book);
+	@PutMapping("/clear")
+	public ResponseEntity<?> clear() {
+		cartService.clear();
+		return ResponseEntity.ok().body("ok");
 	}
 
 }

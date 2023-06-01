@@ -3,12 +3,10 @@ package com.huynm.bookstore.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,9 +19,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 @Data
@@ -66,6 +62,13 @@ public class Book implements Serializable{
 	@OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Image> images;
+
+	@ManyToMany
+	@JoinTable(name = "tblBook_SubCategory",
+			joinColumns=@JoinColumn(name="bookID"),
+			inverseJoinColumns=@JoinColumn(name="SubCategoryID"))
+	@JsonIgnore
+	List<SubCategory> categories;
 	
 	@ManyToMany
 	@JoinTable(name = "tblOrderDetail",

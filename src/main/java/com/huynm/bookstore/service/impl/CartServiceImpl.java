@@ -9,12 +9,21 @@ import java.util.HashMap;
 import java.util.Map;
 @Component
 public class CartServiceImpl implements CartService {
-    Map<Integer ,OrderDetail> maps = new HashMap<>();
+    public static Map<Integer ,OrderDetail> carts = new HashMap<>();
+
+    public static Map < Integer, OrderDetail > getCart() {
+        return carts;
+    }
+
+    // Put data in global cache variable
+    public static void putCart(Integer key, OrderDetail value) {
+        carts.put(key, value);
+    }
     @Override
     public void add(OrderDetail od) {
-        OrderDetail cartItem = maps.get(od.getBook().getId());
+        OrderDetail cartItem = carts.get(od.getBook().getId());
         if(cartItem == null){
-            maps.put(od.getBook().getId(),od);
+            putCart(od.getBook().getId(),od);
         }else{
             cartItem.setQuantity(cartItem.getQuantity() + 1);
         }
@@ -22,17 +31,21 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void remove(int id) {
-
+        OrderDetail cartItems = carts.get(id);
+        cartItems.setQuantity(cartItems.getQuantity() - 1);
+        if(cartItems.getQuantity() == 0){
+            carts.remove(id);
+        }
     }
 
     @Override
     public void clear() {
-        maps.clear();
+        carts.clear();
     }
 
     @Override
     public Collection<OrderDetail> getAllCartItems() {
-        return maps.values();
+        return carts.values();
     }
 
     @Override
