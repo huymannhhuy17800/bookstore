@@ -1,6 +1,7 @@
 package com.huynm.bookstore.dto;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import com.huynm.bookstore.entities.Book;
@@ -31,6 +32,10 @@ public class BookDTO {
 	private int pages;
 	
 	private int quantity;
+
+	private List<String> categories;
+
+	private List<String> imgs;
 
 	public Book convertToEntity() {
 		Book book = new Book();

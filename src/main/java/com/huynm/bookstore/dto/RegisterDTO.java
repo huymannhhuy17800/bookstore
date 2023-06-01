@@ -28,7 +28,8 @@ public class RegisterDTO {
 	private String firstName;
 	
 	private String lastName;
-	
+
+	private int status;
 	private List<Role> roles = new ArrayList<>();
 	
 	public User convertToEntity() {
@@ -40,6 +41,7 @@ public class RegisterDTO {
 		user.setFirstname(firstName);
 		user.setLastname(lastName);
 		user.setRoles(roles);
+		//user.setStatus(status);
 		return user;
 	}	
 }

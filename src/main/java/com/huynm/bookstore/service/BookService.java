@@ -5,12 +5,10 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.huynm.bookstore.dto.BookDTO;
 import com.huynm.bookstore.entities.Book;
-import com.huynm.bookstore.entities.Category;
 
 @Service
-public interface IBookService {
+public interface BookService {
 	
 		Book addBook(Book book);
 		
@@ -25,4 +23,6 @@ public interface IBookService {
 		Set<Book> searchBookByName(String name);
 		
 		Set<Book> searchBookByAuthor(String author);
+
+		List<Book> getBooksByCategory(int categoryId);
 }

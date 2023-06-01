@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,7 +42,7 @@ public class User implements UserDetails{
 	private int id;
 
 	private String username;
-
+	@JsonIgnore
 	private String password;
 
 	private String email;
@@ -51,6 +52,9 @@ public class User implements UserDetails{
 	private String firstname;
 
 	private String lastname;
+
+//	@JsonIgnore
+	//private Integer status;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "tblUser_Role", joinColumns = @JoinColumn(name = "userID"),
@@ -89,7 +93,6 @@ public class User implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

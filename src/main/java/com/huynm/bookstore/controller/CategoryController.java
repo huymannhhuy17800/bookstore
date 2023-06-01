@@ -53,4 +53,12 @@ public class CategoryController {
 	public void deleteCategory(@PathVariable(value = "id") int id) {
 		iCategoryService.deleteCategory(id);
 	}
+
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id){
+		Category result = iCategoryService.getCategoryById(id);
+		return ResponseEntity.ok()
+				.body(result);
+	}
 }

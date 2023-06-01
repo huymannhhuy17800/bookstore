@@ -35,4 +35,11 @@ public class CategoryServiceImpl implements ICategoryService {
 		return categoryRepository.findAll();
 	}
 
+	@Override
+	public Category getCategoryById(int id) {
+		return categoryRepository.findById(id).get();
+	}
+
+
+
 }

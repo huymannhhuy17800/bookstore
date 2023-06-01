@@ -42,16 +42,6 @@ public class Role implements Serializable{
 	@JsonIgnore
 	private Set<User> users;
 
-	public Role(int id) {
-		super();
-		this.id = id;
-	}
-
-	public Role(String name){
-		super();
-		this.name = name;
-	}
-
 	@Override
 	public String toString() {
 		return name;

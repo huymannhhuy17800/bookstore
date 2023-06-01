@@ -1,18 +1,18 @@
 package com.huynm.bookstore.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.huynm.bookstore.dto.BookDTO;
 import com.huynm.bookstore.entities.Book;
 import com.huynm.bookstore.repository.BookRepository;
-import com.huynm.bookstore.service.IBookService;
+import com.huynm.bookstore.service.BookService;
 
 @Component
-public class BookServiceImpl implements IBookService{
+public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
@@ -34,20 +34,22 @@ public class BookServiceImpl implements IBookService{
 
 	@Override
 	public Book getBookById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findById(id).get();
 	}
 
 	@Override
 	public Set<Book> searchBookByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.searchBookByName(name);
 	}
 
 	@Override
 	public Set<Book> searchBookByAuthor(String author) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.searchBookByAuthor(author);
+	}
+
+	@Override
+	public List<Book> getBooksByCategory(int categoryId) {
+		return bookRepository.getBooksByCategory(categoryId);
 	}
 
 	@Override
